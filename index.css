@@ -1,0 +1,831 @@
+/* HEAD */
+#head_layout{ /* HEAD: 상단 고정 헤더 전체 영역 */
+  background-color: #f6f5f0; /* 헤더 배경색 */
+  border: 1px solid #c8c8c8; /* 헤더 경계선 */
+  position: fixed; /* 화면 상단에 고정 */
+  top: 0;
+  width: 100%;
+  z-index: 100;
+}
+#head_layout > .inner{ /* 헤더 내부 컨테이너: 높이 설정용 */
+  height: 120px;
+}
+#head_layout .inner .logo{ /* 로고 영역: 헤더 가운데 정렬 */
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  height: 75px;
+  /* display: none; */
+}
+#head_layout .inner .logo img{/* 로고 이미지 위치 및 크기 조정 가능 */
+  
+}
+
+
+#head_layout .inner .sub-menu{ /*  상단 오른쪽 '로그인/회원가입/검색' 부분 */
+  position: absolute;
+  right: 0;
+  top: 10px;
+  display: flex; /* 내부 메뉴를 가로로 배치 */
+}
+#head_layout .inner .sub-menu .menu{ /* sub-menu 안의 ul.menu → 상단 우측 작은 메뉴 묶음 (ex. Sign in, My Starbucks 등) */
+  display: flex; /* li를 가로로 나열 */
+}
+
+#head_layout .inner .sub-menu .menu li{ /* ul.menu의 각 항목(li): 메뉴 구분선 포함 */
+  position: relative;
+  margin: 0 0;
+}
+#head_layout .inner .sub-menu .menu li:first-child::before{ /* 첫 번째 li에는 구분선 제거 */
+  display: none;
+}
+#head_layout .inner .sub-menu .menu li::before{ /* li 사이 구분선 표시 */
+  content: '';
+  display: block;
+  width: 1px;
+  height: 12px;
+  background-color: #e5e5e5;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+#head_layout .inner .sub-menu .menu li a{ /* 각 li 안의 링크(a): 클릭 가능한 메뉴 항목 */
+  /* background-color: white; */
+  font-size: 12px;
+  display: block;
+  padding: 12px 16px;
+  color: #656565;
+}
+#head_layout .inner .sub-menu .menu li a:hover{ /* 마우스 오버 시 밑줄 표시 */
+  text-decoration: underline;
+}
+
+
+#head_layout .inner .sub-menu .search{/* 검색창 전체 컨테이너 */
+  /* background-color: orange; */
+  height: 34px;
+  position: relative;
+}
+#head_layout .inner .sub-menu .search input{ /* 검색창 입력(input): 클릭 시 확장되는 애니메이션 포함 */
+  width: 36px; /* 기본 좁은 상태 */
+  height: 34px;
+  border-radius: 5px;
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 4px 10px;
+  box-sizing: border-box;
+  font-size: 12px;
+  color: #777;
+  outline: none;
+  transition: width 0.4s; /* 클릭 시 부드럽게 확장 */
+}
+
+
+#head_layout .inner .sub-menu .search input:focus{ /* input 포커스 시 (검색창 클릭 시) */
+  width: 190px; /* 넓어짐 */
+  border-color: #669900; /* 초록색 테두리 */
+}
+#head_layout .inner .sub-menu .search div.material-icons-round{ /* 검색 아이콘 (돋보기 모양) */
+  position: absolute;
+  height: 24px;
+  top: 0;
+  bottom: 0;
+  right: 5px;
+  margin: auto;
+  transition: opacity 0.4s;
+}
+#head_layout .inner .sub-menu .search.focused div{ /* 검색창 클릭 시 아이콘 사라짐 */
+  opacity: 0;
+}
+
+
+#head_layout .main-menu{ /* 메인 메뉴 영역 (COFFEE, MENU, STORE 등) */
+  display: flex; /* 가로 메뉴 */
+  right: 0;
+  bottom: 0px;
+  position: absolute; /* 헤더 하단에 위치 */
+}
+#head_layout .main-menu .item{ /* 각 메인 메뉴 아이템 (li.item) */
+   /* 각 메뉴별 개별 스타일 가능 */
+}
+#head_layout .main-menu .item .item_name{ /* 메인 메뉴 제목 부분 (예: COFFEE) */
+  padding: 10px 20px 34px 20px;
+  font-size: 14px;
+}
+#head_layout .main-menu .item:hover .item_name { /* 마우스 올렸을 때 메뉴 강조 */
+  background-color: #2c2a29;
+  color: #669900;
+  text-decoration: underline;
+}
+#head_layout .main-menu .item .item_name:hover{ /* 마우스 오버 시 효과 동일 처리 */
+  background-color: #2c2a29;
+  color: #669900;
+  text-decoration: underline;
+}
+#head_layout .main-menu .item .item_contents{ /* 메인 메뉴 hover 시 나타나는 하위 전체 영역 (드롭다운 영역) */
+  width: 100%;
+  position: fixed;
+  left: 0;
+  display: none; /* 기본 숨김 */
+}
+#head_layout .main-menu .item:hover .item_contents{ /* 마우스 올리면 드롭다운 메뉴 보이기 */
+  display: block;
+}
+
+
+#head_layout .main-menu .item .item_contents .contents_menu{ /* 드롭다운 내부 전체 메뉴 박스 */
+    background-color: #2c2a29;
+  /* height: 200px; */
+}
+#head_layout .main-menu .item .item_contents .contents_menu > ul{ /* 2단계 메뉴 ul: 큰 카테고리별 그룹 (예: 커피 / 음료 / 푸드 ...) */
+  display: flex; /* 가로 정렬 */
+  padding: 20px 0;
+}
+#head_layout .main-menu .item .item_contents .contents_menu > ul > li{ /* 각 카테고리 li (2depth) */
+  width: 220px;
+}
+#head_layout .main-menu .item .item_contents .contents_menu > ul > li p{ /* 카테고리 제목 (p 태그): 흰색 텍스트 */
+  padding: 3px 0;
+  font-size: 14px;
+  color: #fff;
+}
+#head_layout .main-menu .item .item_contents .contents_menu > ul > li ul{/* 하위 세부 메뉴 ul (3depth) */
+}
+
+#head_layout .main-menu .item .item_contents .contents_menu > ul > li ul li{ /* 세부 메뉴 항목 (예: 스타벅스 원두 등) */
+  padding: 5px 0;
+  font-size: 12px;
+  color: #999;
+}
+#head_layout .main-menu .item .item_contents .contents_menu > ul > li ul li:hover{ /* 세부 메뉴 hover 시 강조 */
+  color: #669900;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+
+/* badge img: 헤더 오른쪽에 표시되는 이벤트/프로모션용 배지 영역 */
+#head_layout .badges{
+  position: absolute; /* 헤더 기준으로 절대 위치 지정 */
+  top: 132px; /* 헤더 아래쪽으로 약간 띄워 배치 */
+  right: -160px; /* 오른쪽 화면 밖에서 살짝 들어오게 배치 (애니메이션용 가능) */
+}
+/* 각각의 배지 박스 (이미지 감싸는 컨테이너) */
+#head_layout .badges .badge{
+  border-radius: 10px; /* 배지 모서리를 둥글게 */
+  overflow: hidden;  /* 이미지가 테두리 밖으로 나가지 않도록 잘라냄 */
+  width: 140px; /* 배지 가로 크기 */
+  height: 96px;/* 배지 세로 크기 */
+  margin-bottom: 8px; /* 배지 간 세로 간격 */
+  cursor: pointer; /* 마우스 올리면 클릭 가능 손모양 표시 */
+}
+/* 마우스 올리면 클릭 가능 손모양 표시 */
+#head_layout .badges .badge img{
+  width: 100%; /* 배지 박스 크기에 맞춰 가로 100% 채움 */
+  height: 100%; /* 세로도 100%로 채움 */
+}
+
+
+
+/* BODY */
+#body_layout{ /* body 전체 영역 레이아웃 */
+  /* background-color: yellow; */
+  margin-top: 120px; /* 상단 헤더 높이만큼 본문을 아래로 밀기 (헤더와 겹치지 않게) */
+}
+#body_layout section.banner{ /* 배너 섹션: 페이지 상단의 큰 배경 이미지 영역 */
+  background-image: url('./images/2025_winter_banner_bg.jpg'); /* 배너 배경 이미지 */
+  background-position: center; /* 배경 이미지를 중앙 정렬 */
+}
+#body_layout section.banner .inner{ /* 배너 내부 콘텐츠 컨테이너 */
+  height: 646px; /* 배너 영역의 높이 */
+  /* background-color: yellow; */
+}
+#body_layout section.banner .inner .title{ /* 배너 제목 영역 (배경 위 텍스트나 로고 위치) */
+  position: absolute; /* 배너 내에서 절대 위치 조정 */
+  left: 0; /* 왼쪽 정렬 */
+  top: 280px; /* 위에서 280px 아래 위치 */
+}
+#body_layout section.banner .inner .title img{}
+#body_layout section.banner .inner .title a{ /* 배너 제목 링크(a) 정렬 */
+  margin: 30px auto 0; /* 상단 30px, 좌우 중앙 정렬, 하단 0 */
+}
+
+
+#body_layout section.banner .inner .cups{ /* 배너 컵 이미지 영역 (.cups) */
+}
+#body_layout section.banner .inner .cups img{ /* 컵 이미지 기본 설정 */
+  position: absolute;  /* 배너 내 절대 위치로 배치 */
+}
+
+/* 컵별 위치 지정 */
+#body_layout section.banner .inner .cups img.cup1{ /* 릴렉서 */
+  bottom: 190px; /* 배너 하단에서 190px 위 */
+  right: 510px;  /* 오른쪽에서 510px 떨어진 위치 */
+}
+#body_layout section.banner .inner .cups img.cup2{  /* 코코말차 */
+  bottom: 190px;
+  right: 185px;
+}
+#body_layout section.banner .inner .cups img.cup3{ /* 윌리 */
+  bottom: 130px;
+  right: 350px;
+}
+#body_layout section.banner .inner .cups img.cup4{ /* 바닐라 */
+  bottom: 180px;
+  right: 30px;
+}
+#body_layout section.banner .inner .cups img.cup5{ /* 토피넛 */
+  bottom: 120px;
+  right: -100px; /* 배너 영역 밖으로 살짝 위치시켜 등장 애니메이션 가능 */
+}
+
+/* fade-in 클래스 요소 초기 상태: 투명 */
+#body_layout section.banner .inner .fade-in{
+  opacity: 0; /* 처음에는 안 보임, GSAP 등으로 순차 등장 처리 */
+}
+
+#body_layout section.notice{}
+#body_layout section.notice .notice-line{ /* notice 라인 컨테이너 */
+  position: relative; /* 내부 배경(.bg-left, .bg-right) 절대 위치 기준 */
+}
+#body_layout section.notice .notice-line .bg-left{ /* notice 배경 왼쪽 영역 */
+  position: absolute; /* 부모 기준 절대 위치 */
+  top: 0; /* 위쪽 0 */
+  left: 0; /* 왼쪽 0 */
+  background-color: #333;
+  height: 100%;  /* 부모 높이 전체 */
+  width: 50%;  /* 왼쪽 절반 차지 */
+}
+#body_layout section.notice .notice-line .bg-right{ /* notice 배경 오른쪽 영역 */
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50%; /* 오른쪽 절반 차지 */
+  height: 100%;
+  background-color: #fbf5ef;
+}
+#body_layout section.notice .notice-line .inner{ /* notice 내부 콘텐츠 영역 */
+  height: 62px;  /* 공지사항 라인 높이 */
+  /* background-color: pink; */
+  /* border: 1px solid red; 경계 확인용 (디버깅) */
+  display: flex; /* 내부를 가로 레이아웃으로 배치 */
+}
+
+
+#body_layout section.notice .notice-line .inner .inner_left{ /* 내부 왼쪽 영역 (예: 공지 내용) */
+  width: 60%; /* 내부 좌측 영역 비율 60% */
+  background-color: #333;
+  height: 100%; /* 부모 높이 전체 */
+  display: flex;
+  align-items: center;
+}
+
+
+#body_layout section.notice .notice-line .inner .inner_left p{ /* inner_left 영역의 p 태그 (예: 공지 제목/라벨) */
+  color: #fff;
+  font-size: 17px;
+  font-weight: 700;
+  margin-right: 20px; /* 오른쪽 여백 */
+  width: 90px; /* 고정 너비 (예: "공지" 텍스트 영역) */
+}
+#body_layout section.notice .notice-line .inner .inner_left .swiper-container{ /* swiper-container: 공지 슬라이드 영역 */
+  /* background-color: palegoldenrod; */
+  height: 62px; /* swiper 높이를 공지라인 높이에 맞춤 */
+  flex-grow: 1; /* 남은 공간을 채워서 가로 길이 자동 확장 */
+  overflow: hidden;  /* 슬라이드가 영역 밖으로 나가지 않게 */
+}
+#body_layout section.notice .notice-line .inner .inner_left .swiper-container .swiper-slide{ /* swiper-slide: 개별 슬라이드 항목 */
+  height: 62px; /* 공지라인 높이에 맞춤 */
+  display: flex; /* 내부 내용을 가로/세로 정렬 가능 */
+  align-items: center;  /* 세로 중앙 정렬 */
+}
+#body_layout section.notice .notice-line .inner .inner_left .swiper-container .swiper-slide a{ /* swiper-slide 안의 링크(a): 공지 텍스트 */
+  color: #fff;
+  text-overflow: ellipsis; /* 글자가 넘치면 …로 표시 */
+  overflow: hidden; /* 넘치는 텍스트 숨김 */
+  white-space: nowrap; /* 텍스트 한 줄로 고정, 줄바꿈 방지 */
+}
+
+
+#body_layout section.notice .notice-line .inner .inner_left .notice_more{
+  width: 62px;
+  height: 62px;
+  display: flex;
+  justify-content: center; /*수평정렬*/
+  align-items: center; /*수직정렬*/
+}
+#body_layout section.notice .notice-line .inner .inner_left .notice_more .notice_box{
+  /* 공지사항 플러스 외부 라운드 테두리 */
+  /* border: 2px solid #fff;
+  border-radius: 100%;
+  width: 32px;
+  height: 32px; */
+}
+#body_layout section.notice .notice-line .inner .inner_left .notice_more .material-icons-round{
+  color: #fff;
+  font-size: 30px;
+}
+
+#body_layout section.notice .notice-line .inner .inner_right{ /* 내부 오른쪽 영역 (예: 버튼, 링크 등) */
+  width: 40%; /* 내부 우측 영역 비율 40% */
+  height: 100%; /* 부모 높이 전체 */
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+#body_layout section.notice .notice-line .inner .inner_right p{ /* inner_right 영역의 텍스트(p) */
+  font-size: 17px;
+  font-weight: 700;
+}
+#body_layout section.notice .notice-line .inner .inner_right .toggle-promotion{ /* 프로모션 토글 버튼 영역 */
+  width: 62px; /* 버튼 너비 */
+  height: 62px; /* 버튼 높이 */
+  cursor: pointer;
+  display: flex;  /* 버튼 높이 */
+  justify-content: center;
+  align-items: center;
+}
+#body_layout section.notice .notice-line .inner .inner_right .toggle-promotion .material-icons-round{ /* toggle 버튼 안의 Material Icons 아이콘 */
+  font-size: 30px;  /* 아이콘 크기 */
+}
+
+/* PROMOTION */
+#body_layout .notice .promotion{
+  width: 100%;
+  background-color: #f6f5f0;
+  position: relative;
+  height: 693px;
+  overflow: hidden;
+  transition: height .5s;
+}
+#body_layout .notice .promotion.hide{
+  height: 0;
+}
+#body_layout .notice .promotion .swiper-container{
+  width: calc(819px * 3 + 20px);
+  height: 553px;
+  /* background-color: bisque; */
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  top: 40px;
+}
+#body_layout .notice .promotion .swiper-container .swiper-wrapper{
+
+}
+#body_layout .notice .promotion .swiper-container .swiper-slide{
+  opacity: 0.5;
+  transition: opacity 1s;
+  position: relative;
+}
+#body_layout .notice .promotion .swiper-container .swiper-slide.swiper-slide-active{
+  opacity: 1;
+}
+#body_layout .notice .promotion .swiper-container .swiper-wrapper .swiper-slide .btn{
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  
+}
+
+
+#body_layout .reward{
+  background-color: #1e3932;
+  padding: 50px 0;
+}
+#body_layout .reward .inner{
+  display: flex;
+  align-items: center;
+}
+#body_layout .reward .inner img{
+  height: fit-content;
+  margin-right: 30px;
+  width: 190px;
+}
+#body_layout .reward .inner .text-box{
+  flex-grow: 1;
+}
+#body_layout .reward .inner .text-box p{
+  color: #fff;
+}
+#body_layout .reward .inner .text-box p b{
+  color: #fff;
+  font-weight: bold;
+}
+/* #body_layout .reward .inner .text-box > div{} */
+#body_layout .reward .inner .text-box .text-box-top,
+#body_layout .reward .inner .text-box .text-box-bot{
+  display: flex;
+}
+#body_layout .reward .inner .text-box .text-box-top{
+  border-bottom: 1px solid #4b615b;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+}
+
+#body_layout .reward .inner .text-box .text-box-top .left > p,
+#body_layout .reward .inner .text-box .text-box-top .left > p b{
+  font-size: 22px;
+}
+#body_layout .reward .inner .text-box .text-box-left{}
+#body_layout .reward .inner .text-box .right{
+  width: 205px;
+}
+#body_layout .reward .inner .text-box .left{
+  flex-grow: 1;
+}
+
+#body_layout .reward .inner .text-box .text-box-top .right{
+  display: flex;
+  align-items: end;
+}
+#body_layout .reward .inner .text-box .text-box-top .right a.btn{
+  width: 95px;
+  height: fit-content;
+}
+#body_layout .reward .inner .text-box .text-box-bot .right a.btn{
+  width: 100%;
+  font-size:14px;
+}
+#body_layout .reward .inner .text-box .text-box-top .right a.btn:first-child{
+  margin-right: 10px;
+}
+
+#body_layout .notice .promotion .swiper-pagination-bullet{
+  background-image: url(./images/promotion_slide_pager.png);
+  background-color: transparent;
+  width: 13px;
+  height: 13px;
+  outline: none;
+}
+#body_layout .notice .promotion .swiper-pagination-bullet.swiper-pagination-bullet-active{
+  background-image: url(./images/promotion_slide_pager_on.png);
+}
+
+#body_layout .notice .promotion .swiper-prev,
+#body_layout .notice .promotion .swiper-next{
+  width: 42px;
+  height: 42px;
+  border-radius: 100%;
+  outline: none;
+  border: 1px solid #333;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  z-index: 1;
+  top: 300px;
+  transition: background-color .4s;
+}
+
+#body_layout .notice .promotion .swiper-prev:hover,
+#body_layout .notice .promotion .swiper-next:hover{
+  background-color: #ffffffc4;
+}
+
+#body_layout .notice .promotion .swiper-prev{
+  left: 50%;
+  margin-left: -480px;
+}
+#body_layout .notice .promotion .swiper-next{
+  right: 50%;
+  margin-right: -480px;
+}
+
+/* SEASON-PRODUCT */
+#body_layout .season-product{
+  background-image: url(./images/2025_season_product_bg.jpg);
+}
+#body_layout .season-product .inner{
+  height: 520px;
+}
+#body_layout .season-product .inner img{
+  width: 230px;
+  position: absolute;
+  left: 25%;
+  top: 15%;
+}
+#body_layout .season-product .inner .text-group{
+  width: 350px;
+  position: absolute;
+  top: 35%;
+  right: 25%;
+}
+#body_layout .season-product .inner .text-group p{
+  color: #fff;
+}
+#body_layout .season-product .inner .text-group p.top{
+  margin-bottom: 15px;
+  font-size: 24px;
+  font-weight: 700;
+}
+#body_layout .season-product .inner .text-group p.bottom{
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+#body_layout .reserve{
+  background-image: url(./images/2025_reserve_bg2.png);
+}
+#body_layout .reserve .inner{
+  height: 400px;
+}
+#body_layout .reserve .inner div{
+  position: absolute;
+  left: 10%;
+  top: 20%;
+  z-index: 2;
+}
+#body_layout .reserve .inner div img{
+  margin-bottom: 25px;
+}
+#body_layout .reserve .inner div a.btn{
+  margin: 0 auto 0 230px;
+}
+#body_layout .reserve .reserve-bg{
+  background-image: url(./images/2025_reserve_bg1.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+}
+
+/* PICK YOUR FAVORITE */
+#body_layout .pick-your-favorite{
+  background-image: url(./images/2025_favorite_bg.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  background-size: cover;
+}
+#body_layout .pick-your-favorite .inner{
+  padding: 110px 0;
+  display: flex;
+}
+#body_layout .pick-your-favorite .text-group{
+  width: 360px;
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
+#body_layout .pick-your-favorite .inner > *{
+  height: fit-content;
+}
+
+#body_layout .pick-your-favorite .text-group img:nth-child(2){
+  margin: 40px 0 30px 0;
+}
+
+/* RESERVE MAGAZINE */
+#body_layout .reserve-magazine{
+  background-image: url(./images/reserve_bg_pc.png);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: center;
+}
+#body_layout .reserve-magazine .inner{
+  height: 400px;
+}
+#body_layout .reserve-magazine .text-group{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 15%;
+  z-index: 2;
+}
+#body_layout .reserve-magazine .text-group a.btn{
+  margin: 15px auto 0 auto;
+}
+#body_layout .reserve-magazine .text-group img{}
+#body_layout .reserve-magazine .bg{
+  position: absolute;
+  right: 95px;
+  top: 0;
+  z-index: 1;
+}
+
+
+/* FINE STORE */
+#body_layout .fine-store{
+  background-image: url(./images/find_store_bg.jpg);
+  position: relative;
+}
+#body_layout .fine-store .inner{
+  height: 400px;
+}
+#body_layout .fine-store .inner .texture1{
+  position: absolute;
+  top: 0;
+  left: 400px;
+}
+#body_layout .fine-store .inner .texture2{
+  position: absolute;
+  bottom: 0%;
+  right: 100px;
+}
+#body_layout .fine-store .inner .img1{
+  position: absolute;
+  top: 0;
+  left: 30px;
+  z-index: 1;
+}
+#body_layout .fine-store .inner .img2{
+  position: absolute;
+  top: 150px;
+  left: 250px;
+  z-index: 2;
+}
+#body_layout .fine-store .text-group{
+  position: absolute;
+  top: 50%;
+  right: 10%;               /* 오른쪽 정렬 */
+  transform: translateY(-50%);
+  
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  z-index: 5;
+}
+
+/* #body_layout .fine-store .text-group{
+  position: relative;
+  height: 400px;
+  top: 0;
+} */
+/* #body_layout .fine-store .text-group .img3{
+  position: absolute;
+  top: 130px;
+  right: 200px;
+}
+#body_layout .fine-store .text-group .img4{
+  position: absolute;
+  top: 200px;
+  right: 220px;
+} */
+/* #body_layout .fine-store .text-group .inner a.btn{
+  margin: 20px 0 12px 0; 
+} */
+#body_layout .fine-store .text-group .img3,
+#body_layout .fine-store .text-group .img4 {
+  position: static;
+  margin: 0 0 10px 0; /* 텍스트 간 간격 */
+}
+
+#body_layout .fine-store .text-group .more a{
+  margin-top: 20px;
+}
+
+
+
+#body_layout .awards{
+  background-color: #272727;
+}
+#body_layout .awards .inner{
+  padding: 40px 0;
+}
+#body_layout .awards .inner .swiper-container{
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+#body_layout .awards .swiper-slide{
+  width: fit-content;
+  height: fit-content;
+}
+#body_layout .awards .swiper-prev,
+#body_layout .awards .swiper-next{
+  width: 42px;
+  height: 42px;
+  border-radius: 100%;
+  border: 1px solid #fff;
+  outline: none;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0.3;
+}
+
+#body_layout .awards .swiper-prev{
+  left: -100px;
+}
+#body_layout .awards .swiper-next{
+  right: -100px;
+}
+
+#body_layout .awards .swiper-prev span,
+#body_layout .awards .swiper-next span{
+  color: #fff;
+}
+
+#body_layout .awards .swiper-prev:hover,
+#body_layout .awards .swiper-next:hover{
+  background-color: #fff;
+  color: #333;
+}
+#body_layout .awards .swiper-prev span:hover,
+#body_layout .awards .swiper-next span:hover{
+  color: #333;
+}
+
+/* FOOT */
+#foot_layout{
+  background-color: #272727;
+  border-top: 1px solid #333;
+}
+#foot_layout .inner{
+  padding: 40px 0;
+}
+#foot_layout .inner .menu{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+#foot_layout .inner .menu li{
+  position: relative;
+  
+}
+#foot_layout .inner .menu li a:hover{
+  text-decoration: underline;
+}
+#foot_layout .inner .menu li:first-child::before{
+  display: none;
+}
+#foot_layout .inner .menu li::before{
+  content: '';
+  display: block;
+  width: 3px;
+  height: 3px;
+  background-color: #555;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+#foot_layout .inner .menu li:first-child a{
+  color: #690;
+}
+#foot_layout .inner .menu li a{
+  color: #fff;
+  padding: 15px;
+}
+#foot_layout .inner .btn-group{
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+#foot_layout .inner .btn-group .btn:last-child{
+  margin-right: 0;
+}
+#foot_layout .inner .info{
+  text-align: center;
+}
+#foot_layout .inner .info span{
+  font-size: 12px;
+  color: #999;
+  margin-right: 20px;
+}
+#foot_layout .inner .info span:last-child{
+  margin-right: 0;
+}
+#foot_layout .inner .copyright{
+  font-size: 12px;
+  text-align: center;
+  color: #999;
+  margin: 15px auto 30px;
+}
+#foot_layout .inner .logo{
+  margin: 0 auto;
+}
+
+/* TO TOP */
+#to-top{
+  width: 42px;
+  height: 42px;
+  border: 2px solid #fff;
+  border-radius: 10px;
+  background-color: #333;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  z-index: 9;
+}
