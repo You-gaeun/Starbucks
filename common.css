@@ -100,15 +100,14 @@ body{
     border: 2px solid #333;
     text-decoration: #333 underline;
 }
-.btn.btn-glod{ /* 금색 테마 버튼 (.btn-glod): 포인트 강조용 버튼 */
+.btn.btn-gold{ /* 금색 테마 버튼 (.btn-glod): 포인트 강조용 버튼 */
     border-color: #d0923e; /* 금색 계열 테두리 */
     color: #d0923e; /* 글자색 금색 */
 }
-.btn.btn-glod:hover{ /* 금색 버튼 hover 시: 금색 배경 + 흰색 글자 */
+.btn.btn-gold:hover{ /* 금색 버튼 hover 시: 금색 배경 + 흰색 글자 */
     background-color: #d0923e;
     color: #fff;
     text-decoration: underline;
-    border: 2px solid #d0923e;
 }
 .btn.btn-green{
     color: #fff;

@@ -535,7 +535,7 @@
 #body_layout .reserve .inner{
   height: 400px;
 }
-#body_layout .reserve .inner div{
+#body_layout .reserve .inner > div:first-child{
   position: absolute;
   left: 10%;
   top: 20%;
