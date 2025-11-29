@@ -76,7 +76,7 @@ fadeinEls.forEach(function(fadeEl,index){
 
 new Swiper('.notice-line .swiper-container',{
   direction : 'vertical',//수직 슬라이드
-  // autoplay : true, //자동 재생 여부
+  autoplay : true, //자동 재생 여부
   loop : true //반복재생 여부
 });
 
